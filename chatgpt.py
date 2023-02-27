@@ -86,7 +86,7 @@ def chat_page():
                 """
         st.markdown(temp_inst, unsafe_allow_html=True)
         temperature = st.slider(
-        "Randomness of response. Lower temperatures tend to give more robust responses. Default = 0.4", 0.0, 2.0, 0.4, 0.01, key="temperature")
+        "Increase to generate more random responses. Default = 0.4", 0.0, 2.0, 0.4, 0.01, key="temperature")
         pres_inst= """
                 <h2 style="color:#66CCCC;font-size:17px;">
                 presence_penalty
