@@ -124,19 +124,19 @@ def chat_page():
 
     # Chat now!
     text_form = st.form(key='my_form', clear_on_submit=True)
-    user_input = text_form.text_input(label="You:", value='', placeholder="Hello, how are you?")
-    submit_button = text_form.form_submit_button(label='Submit')
+    with text_form:
+        user_input = st.text_input(label="You:", value='', placeholder="Hello, how are you?")
+        submit_button = st.form_submit_button(label='Submit')
+        if submit_button:
+            output = generate_response(prompt=user_input,
+                                       model_engine=model_engine,
+                                       temperature=st.session_state.temperature,
+                                       presence_penalty=st.session_state.presence_penalty,
+                                       frequency_penalty=st.session_state.frequency_penalty)
 
-    if submit_button:
-        output = generate_response(prompt=user_input,
-                                   model_engine=model_engine,
-                                   temperature=st.session_state.temperature,
-                                   presence_penalty=st.session_state.presence_penalty,
-                                   frequency_penalty=st.session_state.frequency_penalty)
-
-        # store the output
-        st.session_state.past.append(user_input)
-        st.session_state.generated.append(output)
+            # store the output
+            st.session_state.past.append(user_input)
+            st.session_state.generated.append(output)
 
     if st.session_state['generated']:
         # enable codes below to test parameter changes
