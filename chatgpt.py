@@ -6,11 +6,12 @@ from streamlit_chat import message
 # Call OpenAI API to receive response
 def generate_response(prompt, model_engine, temperature=0.4, presence_penalty=0, frequency_penalty=0):
 
-    # concat context
+    # concat context, up to 5 last Q&As
     context = ''
-    for i in range(len(st.session_state.past)):
-        context += f"question {i + 1}: {st.session_state.past[i]}" + "\n"
-        context += f"ans {i + 1}: {st.session_state.generated[i]}" + "\n"
+    upper_bound = min(5, len(st.session_state.past))
+    for i in range(1, upper_bound + 1):
+        context += f"last question {i}: {st.session_state.past[-i]}" + "\n"
+        context += f"ans {i}: {st.session_state.generated[-i]}" + "\n"
 
     # package context with prompt
     prompt_with_context = f"context: {context}" + "\n" + f"prompt: {prompt}" + "\n"
