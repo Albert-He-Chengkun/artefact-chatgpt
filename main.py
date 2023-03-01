@@ -19,7 +19,8 @@ name, authentication_status, username = authenticator.login('Login', 'main')
 if st.session_state["authentication_status"]:
     col1, col2 = st.columns([6, 1])
     with col1:
-        chat_page()
+        # chat_page()
+        st.subheader('Maintaining......will be back soon')
     with col2:
         authenticator.logout('Logout', 'main')
 elif st.session_state["authentication_status"] is False:
