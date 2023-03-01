@@ -82,7 +82,7 @@ def chat_page():
         st.markdown(header2, unsafe_allow_html=True)
         temp_inst= """
                 <h2 style="color:#66CCCC;font-size:17px;">
-                temperature
+                Temperature
                 </h2>
                 """
         st.markdown(temp_inst, unsafe_allow_html=True)
@@ -90,7 +90,7 @@ def chat_page():
         "Increase to generate more random responses. Default = 0.4", 0.0, 2.0, 0.4, 0.01, key="temperature")
         pres_inst= """
                 <h2 style="color:#66CCCC;font-size:17px;">
-                presence_penalty
+                Presence penalty
                 </h2>
                 """
         st.markdown(pres_inst, unsafe_allow_html=True)
@@ -98,7 +98,7 @@ def chat_page():
         "Increase to encourage model to talk about new topic. Default = 0", -2.0, 2.0, 0.0, 0.01, key="presence_penalty")
         freq_inst= """
                 <h2 style="color:#66CCCC;font-size:17px;">
-                frequency_penalty
+                Frequency penalty
                 </h2>
                 """
         st.markdown(freq_inst, unsafe_allow_html=True)
