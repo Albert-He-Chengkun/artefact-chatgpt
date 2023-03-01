@@ -128,25 +128,27 @@ def chat_page():
     with text_form:
         user_input = st.text_input(label="You:", value='', placeholder="Hello, how are you?")
         submit_button = st.form_submit_button(label='Submit')
-        if submit_button:
-            output = generate_response(prompt=user_input,
-                                       model_engine=model_engine,
-                                       temperature=st.session_state.temperature,
-                                       presence_penalty=st.session_state.presence_penalty,
-                                       frequency_penalty=st.session_state.frequency_penalty)
 
-            # store the output
-            st.session_state.past.append(user_input)
-            st.session_state.generated.append(output)
+    if submit_button:
 
-    if st.session_state['generated']:
-        # enable codes below to test parameter changes
-        # message(f"""
-        # Current temperature is {st.session_state.temperature},
-        # presence_penalty is {st.session_state.presence_penalty},
-        # frequency_penalty is {st.session_state.frequency_penalty}
-        # """)
-        for i in range(len(st.session_state['generated']) - 1, -1, -1):
-            message(st.session_state["generated"][i], key=str(i))
-            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+        output = generate_response(prompt=user_input,
+                                   model_engine=model_engine,
+                                   temperature=st.session_state.temperature,
+                                   presence_penalty=st.session_state.presence_penalty,
+                                   frequency_penalty=st.session_state.frequency_penalty)
+
+        # store the output
+        st.session_state.past.append(user_input)
+        st.session_state.generated.append(output)
+
+        if st.session_state['generated']:
+            # enable codes below to test parameter changes
+            # message(f"""
+            # Current temperature is {st.session_state.temperature},
+            # presence_penalty is {st.session_state.presence_penalty},
+            # frequency_penalty is {st.session_state.frequency_penalty}
+            # """)
+            for i in range(len(st.session_state['generated']) - 1, -1, -1):
+                message(st.session_state["generated"][i], key=str(i))
+                message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
 
