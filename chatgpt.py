@@ -16,18 +16,25 @@ def generate_response(prompt, model_engine, temperature=0.4, presence_penalty=0,
     # package context with prompt
     prompt_with_context = f"context: {context}" + "\n" + f"prompt: {prompt}" + "\n"
 
-    # get response
-    completions = openai.Completion.create(
-        engine=model_engine,
-        prompt=prompt_with_context,
-        max_tokens=2048,
-        n=1,
-        stop=None,
-        temperature=temperature,
-        presence_penalty=presence_penalty,
-        frequency_penalty=frequency_penalty
+    # get response (old)
+    # completions = openai.Completion.create(
+    #     engine=model_engine,
+    #     prompt=prompt_with_context,
+    #     max_tokens=2048,
+    #     n=1,
+    #     stop=None,
+    #     temperature=temperature,
+    #     presence_penalty=presence_penalty,
+    #     frequency_penalty=frequency_penalty
+    # )
+    # message = completions.choices[0].text
+
+    # get response (new)
+    completion = openai.ChatCompletion.create(
+        model=model_engine,
+        messages=[{"role": "user", "content": prompt_with_context}]
     )
-    message = completions.choices[0].text
+    message = completion["choices"][0]["message"]["content"]
     return message
 
 
