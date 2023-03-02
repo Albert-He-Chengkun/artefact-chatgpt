@@ -1,3 +1,4 @@
+import os
 import openai
 import streamlit as st
 from streamlit_chat import message
@@ -40,8 +41,12 @@ def generate_response(prompt, model_engine, temperature=0.4, presence_penalty=0,
 
 def chat_page():
 
-    openai.api_key = st.secrets['OPENAI_API_KEY']
-    model_engine = st.secrets['MODEL_ENGINE']
+    try:
+        openai.api_key = st.secrets['OPENAI_API_KEY']
+        model_engine = st.secrets['MODEL_ENGINE']
+    except:
+        openai.api_key = os.environ['OPENAI_API_KEY']
+        model_engine = os.environ['MODEL_ENGINE']
 
     # Page setup
     # Disable hamburger & footer
