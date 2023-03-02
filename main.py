@@ -20,14 +20,14 @@ try:
         st.secrets['preauthorized']
     )
 except:
-    auth = {'credentials': {'usernames': {os.environ['username']: {
-        'name': os.environ['username'],
-        'password': os.environ['password']}}}}
+    auth = {'credentials': {'usernames': {os.environ['username_bot']: {
+        'name': os.environ['username_bot'],
+        'password': os.environ['password_bot']}}}}
 
     authenticator = stauth.Authenticate(
         auth['credentials'],
-        os.environ['cookie_name'],
-        os.environ['cookie_key'],
+        os.environ['cookie_name_bot'],
+        os.environ['cookie_key_bot'],
         int(os.environ['cookie_expiry_days'])
     )
 
