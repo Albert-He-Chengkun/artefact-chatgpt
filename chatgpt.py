@@ -80,7 +80,7 @@ def chat_page():
                 </h1>
                 """
         st.markdown(header1, unsafe_allow_html=True)
-        st.write('This is a ChatBot powered by OpenAI & Streamlit for Artefact internal use. Currently, the model engine it loads is text-davinci-003.')
+        st.write(f'This is a ChatBot powered by OpenAI & Streamlit for Artefact internal use. Currently, the model engine it loads is {model_engine}.')
         header2 = """
                 <h1 style="color:#ff0066;font-size:20px;">
                 Available Parameters
